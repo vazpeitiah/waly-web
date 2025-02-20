@@ -1,0 +1,41 @@
+{
+  "app": {
+    "title": "Wally",
+    "description": "Wally es una aplicación de gestión de gastos personales que te ayuda a controlar tus finanzas."
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "La página que estás buscando no existe."
+  },
+  "navUser": {
+    "profile": "Perfil",
+    "logout": "Cerrar sesión"
+  },
+  "navbar": {
+    "accounts": "Cuentas",
+    "categories": "Categorías",
+    "transactions": "Transacciones"
+  },
+  "login": {
+    "title": "Iniciar sesión",
+    "subtitle": "Ingresa tus datos para acceder a tu cuenta.",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Iniciar sesión",
+    "google": "Iniciar sesión con Google",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "noAccount": "¿No tienes una cuenta?",
+    "signUp": "Regístrate"
+  },
+  "accounts": {
+    "title": "Cuentas",
+    "table": {
+      "actions": {
+        "open": "Abrir menú",
+        "title": "Acciones",
+        "edit": "Editar cuenta",
+        "delete": "Eliminar cuenta"
+      }
+    }
+  }
+}

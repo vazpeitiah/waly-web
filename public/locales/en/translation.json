@@ -1,0 +1,14 @@
+{
+  "app": {
+    "title": "Wally",
+    "description": "Wally is a personal expense management application that helps you control your finances."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist."
+  },
+  "navUser": {
+    "profile": "Profile",
+    "logout": "Logout"
+  }
+}
