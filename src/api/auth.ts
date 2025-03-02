@@ -9,7 +9,6 @@ export const login = async (data: LoginData) => {
 export const loginWithGoogle = async () => {
   const res = await api.get('/auth/google')
   const { url } = res.data
-  console.log('la url es', url)
   window.location.replace(url)
 }
 

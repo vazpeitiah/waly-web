@@ -7,7 +7,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { useConfirm } from '@/hooks'
 import { Account } from '@/models/account'
+import { useDeleteAccount } from '@/queries/accounts'
 import { Row } from '@tanstack/react-table'
 import { MoreHorizontal } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
@@ -18,7 +20,20 @@ interface ActionsProps {
 
 const Actions = ({ accountRow }: ActionsProps) => {
   const { t } = useTranslation()
+  const { confirm } = useConfirm()
+  const { mutate } = useDeleteAccount()
   const account = accountRow.original
+
+  const handleDelete = async () => {
+    const isConfirmed = await confirm({
+      title: t('accounts.table.actions.confirmDelete', {
+        account: account.name,
+      }),
+    })
+    if (isConfirmed) {
+      mutate(account.id)
+    }
+  }
 
   return (
     <DropdownMenu>
@@ -32,10 +47,9 @@ const Actions = ({ accountRow }: ActionsProps) => {
         <DropdownMenuLabel>
           {t('accounts.table.actions.title')}
         </DropdownMenuLabel>
-        <DropdownMenuLabel>{account.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>{t('accounts.table.actions.edit')}</DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={handleDelete}>
           {t('accounts.table.actions.delete')}
         </DropdownMenuItem>
       </DropdownMenuContent>

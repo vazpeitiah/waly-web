@@ -8,7 +8,6 @@ const AuthLayout = () => {
   const navigate = useNavigate()
   const { setIsAuth } = useAuthStore()
   const { isSuccess: isValidSession, mutate } = useVerify()
-  console.log('rendered')
 
   useEffect(() => {
     mutate()

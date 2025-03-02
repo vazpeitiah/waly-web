@@ -1,9 +1,10 @@
 import { getAccounts } from '@/api/accounts'
+import { QK } from '@/utils/const'
 import { useQuery } from '@tanstack/react-query'
 
 const useGetAccounts = () => {
   const { data, isSuccess, isLoading } = useQuery({
-    queryKey: ['accounts'],
+    queryKey: [QK.accounts.read],
     queryFn: getAccounts,
   })
 

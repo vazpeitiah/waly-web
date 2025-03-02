@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from 'react-router'
+import { Outlet } from 'react-router'
 
 import {
   Breadcrumb,
@@ -17,10 +17,6 @@ import {
 import { AppSidebar, ThemeSelector } from '@/components'
 
 export default function AppLayout() {
-  const { pathname } = useLocation()
-
-  console.log(pathname.split('/').map((path) => path || 'root'))
-
   return (
     <SidebarProvider>
       <AppSidebar />

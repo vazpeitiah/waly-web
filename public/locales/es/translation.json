@@ -34,8 +34,33 @@
         "open": "Abrir menú",
         "title": "Acciones",
         "edit": "Editar cuenta",
-        "delete": "Eliminar cuenta"
+        "delete": "Eliminar cuenta",
+        "confirmDelete": "¿Estás seguro de que quieres eliminar la cuenta {{account}}?"
+      },
+      "columns": {
+        "name": "Nombre",
+        "type": "Tipo"
       }
+    },
+    "form": {
+      "type": "Tipo",
+      "name": "Nombre",
+      "title": "Agregar cuenta",
+      "typePlaceholder": "Selecciona el tipo de cuenta"
+    },
+    "add": "Agregar cuenta"
+  },
+  "buttons": {
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "confirm": "Confirmar"
+  },
+  "catalogs": {
+    "accountTypes": {
+      "cash": "Efectivo",
+      "credit_card": "Tarjeta de crédito",
+      "bank": "Cuenta bancaria",
+      "other": "Otro"
     }
   }
 }

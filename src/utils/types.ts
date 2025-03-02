@@ -8,3 +8,8 @@ export type NavMenuGroup = {
   icon: React.ReactNode
   items: NavMenuItem[]
 }
+
+export type ConfirmParams = {
+  title: React.ReactNode
+  description?: React.ReactNode
+}

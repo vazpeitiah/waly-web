@@ -5,7 +5,7 @@ interface AuthState {
   setIsAuth: (isAuth: boolean) => void
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
+export const useAuthStore = create<AuthState>()((set) => ({
   isAuth: false,
   setIsAuth: (isAuth) => set({ isAuth }),
 }))
