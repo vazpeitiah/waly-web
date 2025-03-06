@@ -14,5 +14,10 @@ export const accountCreateSchema = baseSchema.extend({
   type: z.string().nonempty(),
 })
 
+export const defaultAccount: AccountCreate = {
+  name: '',
+  type: '',
+}
+
 export type AccountCreate = z.infer<typeof accountCreateSchema>
 export type Account = z.infer<typeof accountSchema>

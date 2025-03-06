@@ -46,7 +46,8 @@
       "type": "Tipo",
       "name": "Nombre",
       "title": "Agregar cuenta",
-      "typePlaceholder": "Selecciona el tipo de cuenta"
+      "typePlaceholder": "Selecciona el tipo de cuenta",
+      "editTitle": "Editar cuenta {{account.name}}"
     },
     "add": "Agregar cuenta"
   },

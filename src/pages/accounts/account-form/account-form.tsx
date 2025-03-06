@@ -11,9 +11,9 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import { accountCreateSchema } from '@/models/account'
-import { useCreateAccount } from '@/queries/accounts'
-import { useNavigate } from 'react-router'
+import { Account, accountCreateSchema, defaultAccount } from '@/models/account'
+import { useCreateAccount, useUpdateAccount } from '@/queries/accounts'
+import { useLocation, useNavigate } from 'react-router'
 import { ACCOUNT_TYPES, ROUTES } from '@/utils/const'
 import {
   Select,
@@ -30,14 +30,23 @@ const AccountFrom = ({
 }: React.ComponentPropsWithoutRef<'form'>) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const { state } = useLocation()
+  const account: Account | undefined = state?.account
   const form = useForm({
     resolver: zodResolver(accountCreateSchema),
+    defaultValues: account ?? defaultAccount,
   })
-  const { mutate, isPending } = useCreateAccount()
+  const { mutate: createAccount, isPending: isCreating } = useCreateAccount()
+  const { mutate: updateAccount, isPending: isUpdating } = useUpdateAccount()
   const accountTypes = generateOptions(ACCOUNT_TYPES, 'accountTypes', t)
+  const isPending = isCreating || isUpdating
 
   const handleOnSubmit = form.handleSubmit((data) => {
-    mutate(data)
+    if (account) {
+      updateAccount({ ...account, ...data })
+    } else {
+      createAccount(data)
+    }
     handleCancel()
   })
 
@@ -48,7 +57,13 @@ const AccountFrom = ({
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-xl">{t('accounts.form.title')}</h1>
+      <h1 className="text-xl">
+        {account
+          ? t('accounts.form.editTitle', {
+              account: account,
+            })
+          : t('accounts.form.title')}
+      </h1>
       <Form {...form}>
         <form onSubmit={handleOnSubmit} className={className} {...props}>
           <div className="flex flex-col gap-6">

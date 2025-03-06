@@ -1,4 +1,4 @@
-import { ArrowLeftRight, Tags, Wallet } from 'lucide-react'
+import { ArrowLeftRight, Tags, Wallet, WalletMinimal } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 
@@ -37,7 +37,7 @@ const data = {
     {
       name: 'navbar.accounts',
       url: ROUTES.accounts.root,
-      icon: Tags,
+      icon: WalletMinimal,
     },
   ],
 }

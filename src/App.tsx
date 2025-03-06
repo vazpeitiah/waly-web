@@ -23,6 +23,7 @@ export default function App() {
             <Route path={ROUTES.accounts.root}>
               <Route index element={<Accounts />} />
               <Route path={ROUTES.accounts.add} element={<AccountForm />} />
+              <Route path={ROUTES.accounts.edit} element={<AccountForm />} />
             </Route>
             <Route path={ROUTES.categories.root}>
               <Route index element={<Categories />} />

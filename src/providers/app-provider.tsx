@@ -37,7 +37,7 @@ const AppProvider = ({ children }: PropsWithChildren) => {
         </ThemeProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-      <Toaster />
+      <Toaster richColors />
     </BrowserRouter>
   )
 }

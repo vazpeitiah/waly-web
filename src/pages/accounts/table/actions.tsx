@@ -10,9 +10,11 @@ import {
 import { useConfirm } from '@/hooks'
 import { Account } from '@/models/account'
 import { useDeleteAccount } from '@/queries/accounts'
+import { ROUTES } from '@/utils/const'
 import { Row } from '@tanstack/react-table'
 import { MoreHorizontal } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router'
 
 interface ActionsProps {
   accountRow: Row<Account>
@@ -22,6 +24,7 @@ const Actions = ({ accountRow }: ActionsProps) => {
   const { t } = useTranslation()
   const { confirm } = useConfirm()
   const { mutate } = useDeleteAccount()
+  const navigate = useNavigate()
   const account = accountRow.original
 
   const handleDelete = async () => {
@@ -33,6 +36,10 @@ const Actions = ({ accountRow }: ActionsProps) => {
     if (isConfirmed) {
       mutate(account.id)
     }
+  }
+
+  const handleEdit = () => {
+    navigate(ROUTES.accounts.edit, { state: { account } })
   }
 
   return (
@@ -48,7 +55,9 @@ const Actions = ({ accountRow }: ActionsProps) => {
           {t('accounts.table.actions.title')}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>{t('accounts.table.actions.edit')}</DropdownMenuItem>
+        <DropdownMenuItem onClick={handleEdit}>
+          {t('accounts.table.actions.edit')}
+        </DropdownMenuItem>
         <DropdownMenuItem onClick={handleDelete}>
           {t('accounts.table.actions.delete')}
         </DropdownMenuItem>
