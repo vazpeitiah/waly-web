@@ -63,5 +63,19 @@
       "bank": "Cuenta bancaria",
       "other": "Otro"
     }
+  },
+  "breadcrumbs": {
+    "home": "Inicio",
+    "accounts": {
+      "root": "Cuentas",
+      "add": "Agregar cuenta",
+      "edit": "Editar cuenta"
+    },
+    "categories": {
+      "root": "Categorías"
+    },
+    "transactions": {
+      "root": "Transacciones"
+    }
   }
 }

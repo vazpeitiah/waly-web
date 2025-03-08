@@ -13,3 +13,8 @@ export type ConfirmParams = {
   title: React.ReactNode
   description?: React.ReactNode
 }
+
+export type BreadcrumbItem = {
+  title: string
+  url: string
+}
