@@ -25,6 +25,12 @@ export const QK = {
   accounts: {
     read: 'accounts',
   },
+  user: {
+    profile: 'user-profile',
+  },
+  auth: {
+    verify: 'auth-verify',
+  },
 }
 
 export const ACCOUNT_TYPES = {
@@ -49,3 +55,11 @@ export const DEFAULT_STALE_TIME = 1000 * 60 * 5
 export const STORE_PERSIST_KEY = {
   auth: 'auth-storage',
 }
+
+/**
+ * The duration for which a token is valid, in milliseconds.
+ * This is set to 60 minutes (1000 milliseconds * 60 seconds * 60 minutes).
+ */
+export const TOKEN_EXPIRATION = 1000 * 60 * 60
+
+export const QK_ERROR_EXCLUDE = [QK.auth.verify]

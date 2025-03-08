@@ -9,7 +9,7 @@ import { toast, Toaster } from 'sonner'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import { ThemeProvider } from './theme-provider'
-import { DEFAULT_STALE_TIME } from '@/utils/const'
+import { DEFAULT_STALE_TIME, QK_ERROR_EXCLUDE } from '@/utils/const'
 import ConfirmProvider from './confirm-provider'
 
 const queryClient = new QueryClient({
@@ -21,6 +21,7 @@ const queryClient = new QueryClient({
   },
   queryCache: new QueryCache({
     onError: (error, query) => {
+      if (QK_ERROR_EXCLUDE.some((q) => query.queryKey.includes(q))) return
       toast.error(`Failed to fetch ${query.queryKey[0]}: ${error.message}`, {
         richColors: true,
       })

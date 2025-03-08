@@ -7,8 +7,20 @@ import {
   SidebarTrigger,
 } from '@/components/ui/sidebar'
 import { AppSidebar, Breadcrumbs, ThemeSelector } from '@/components'
+import { useGetUserProfile } from '@/queries/user'
+import { useAuthStore } from '@/stores/auth'
+import { useEffect } from 'react'
 
 export default function AppLayout() {
+  const { setUser } = useAuthStore()
+  const { data: user, isSuccess: isSuccessProfile } = useGetUserProfile()
+
+  useEffect(() => {
+    if (isSuccessProfile && user) {
+      setUser(user)
+    }
+  }, [isSuccessProfile, user, setUser])
+
   return (
     <SidebarProvider>
       <AppSidebar />

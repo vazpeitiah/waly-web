@@ -16,34 +16,29 @@ import {
 } from '@/components/ui/sidebar'
 import { ROUTES } from '@/utils/const'
 import { NavUser } from '@/components/app-sidebar'
+import { useAuthStore } from '@/stores/auth'
 
-const data = {
-  user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
+const menus = [
+  {
+    name: 'navbar.transactions',
+    url: ROUTES.transactions.root,
+    icon: ArrowLeftRight,
   },
-  projects: [
-    {
-      name: 'navbar.transactions',
-      url: ROUTES.transactions.root,
-      icon: ArrowLeftRight,
-    },
-    {
-      name: 'navbar.categories',
-      url: ROUTES.categories.root,
-      icon: Tags,
-    },
-    {
-      name: 'navbar.accounts',
-      url: ROUTES.accounts.root,
-      icon: WalletMinimal,
-    },
-  ],
-}
+  {
+    name: 'navbar.categories',
+    url: ROUTES.categories.root,
+    icon: Tags,
+  },
+  {
+    name: 'navbar.accounts',
+    url: ROUTES.accounts.root,
+    icon: WalletMinimal,
+  },
+]
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { t } = useTranslation()
+  const { user } = useAuthStore()
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -63,7 +58,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">
           <SidebarGroupLabel>Menús</SidebarGroupLabel>
           <SidebarMenu>
-            {data.projects.map((item) => (
+            {menus.map((item) => (
               <SidebarMenuItem key={item.name}>
                 <SidebarMenuButton asChild>
                   <Link to={item.url}>
@@ -76,7 +71,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>{<NavUser user={data.user} />}</SidebarFooter>
+      {user && <SidebarFooter>{<NavUser user={user} />}</SidebarFooter>}
       <SidebarRail />
     </Sidebar>
   )

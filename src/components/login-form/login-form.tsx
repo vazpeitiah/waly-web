@@ -13,7 +13,7 @@ import {
   FormLabel,
   FormMessage,
 } from '../ui/form'
-import { useLogin } from '@/queries'
+import { useLogin } from '@/queries/auth'
 
 const LoginForm = ({
   className,
