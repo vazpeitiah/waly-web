@@ -57,10 +57,17 @@ export const generateBreadcrumbs = (
   })
 }
 
+/**
+ * Generates a fallback avatar string based on the initials of the given name.
+ *
+ * @param name - The full name from which to generate the avatar fallback.
+ * @returns A string containing the uppercase initials of the given name.
+ */
 export const generateAvatarFallback = (name: string) => {
   return name
     .split(' ')
     .map((word) => word[0])
     .join('')
+    .slice(0, 2)
     .toUpperCase()
 }

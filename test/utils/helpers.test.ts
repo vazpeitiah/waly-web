@@ -1,6 +1,10 @@
 import { describe, it, expect } from 'vitest'
 
-import { generateBreadcrumbs, generateOptions } from '../../src/utils/helpers'
+import {
+  generateAvatarFallback,
+  generateBreadcrumbs,
+  generateOptions,
+} from '../../src/utils/helpers'
 
 describe('helpers', () => {
   it('generate options should return an array of objects', () => {
@@ -51,5 +55,27 @@ describe('generateBreadcrumbs', () => {
   it('should return an empty array when the pathname is "/" & not include current path', () => {
     const res = generateBreadcrumbs('/', false)
     expect(res).toEqual([])
+  })
+})
+
+describe('generateAvatarFallback', () => {
+  it('should return a string with the first two letters of the name', () => {
+    const res = generateAvatarFallback('John Doe')
+    expect(res).toBe('JD')
+  })
+
+  it('should return a string with the first letter of the name', () => {
+    const res = generateAvatarFallback('John')
+    expect(res).toBe('J')
+  })
+
+  it('should return an empty string when the name is empty', () => {
+    const res = generateAvatarFallback('')
+    expect(res).toBe('')
+  })
+
+  it('should return a string with the first two letters of the name when the name has more than two words', () => {
+    const res = generateAvatarFallback('John Doe Smith')
+    expect(res).toBe('JD')
   })
 })
