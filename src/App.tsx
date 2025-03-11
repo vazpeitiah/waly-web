@@ -13,6 +13,8 @@ import {
 import { ROUTES } from '@/utils/const'
 import { AppProvider } from '@/providers'
 
+import './i18n.ts'
+
 export default function App() {
   return (
     <AppProvider>
