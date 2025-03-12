@@ -29,6 +29,8 @@ vi.mock('react-i18next', () => ({
   },
 }))
 
+vi.mock('i18next-http-backend')
+
 beforeEach(() => {
   cleanup()
 })

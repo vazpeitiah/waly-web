@@ -3,12 +3,7 @@ import { http, HttpResponse } from 'msw'
 
 export const handlers = [
   http.get('/auth/verify', () => {
-    return HttpResponse.json(
-      {
-        message: 'User is not authenticated',
-      },
-      { status: 401 },
-    )
+    return HttpResponse.json({ isValid: true })
   }),
   http.get('/user/profile', () => {
     return HttpResponse.json({
