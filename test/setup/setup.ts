@@ -38,3 +38,8 @@ beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
 
 afterAll(() => server.close())
+
+/* To be able to select an item from Shadcn */
+window.HTMLElement.prototype.scrollIntoView = vi.fn()
+window.HTMLElement.prototype.hasPointerCapture = vi.fn()
+window.HTMLElement.prototype.releasePointerCapture = vi.fn()
