@@ -11,6 +11,22 @@ import { ROUTES } from '@/utils/const'
 
 const mockNavigate = vi.fn()
 
+const mocks = vi.hoisted(() => {
+  return {
+    mockSuccess: vi.fn(),
+  }
+})
+
+vi.mock('sonner', async (importOriginal) => {
+  const actual = (await importOriginal()) as typeof importOriginal
+  return {
+    ...actual,
+    toast: {
+      success: mocks.mockSuccess,
+    },
+  }
+})
+
 vi.mock('react-router', async (importOriginal) => {
   const actual = (await importOriginal()) as typeof importOriginal
   return {
@@ -112,5 +128,35 @@ describe('Accounts', () => {
     expect(mockNavigate).toHaveBeenCalledWith(ROUTES.accounts.edit, {
       state: { account: accounts[0] },
     })
+  })
+
+  it('should be delete an account correctly', async () => {
+    const user = userEvent.setup()
+
+    server.use(
+      http.get('/accounts', () => {
+        return HttpResponse.json(accounts)
+      }),
+      http.delete('/accounts/:id', () => {
+        return HttpResponse.json(accounts[0])
+      }),
+    )
+    render(
+      <TestWrapper>
+        <Accounts />
+      </TestWrapper>,
+    )
+
+    await screen.findByText('Cash')
+    const actionsButtons = await screen.findAllByRole('button', {
+      name: 'accounts.table.actions.open',
+    })
+
+    await user.click(actionsButtons[0])
+    await user.click(screen.getByText('accounts.table.actions.delete'))
+
+    await user.click(screen.getByText('buttons.confirm'))
+
+    expect(mocks.mockSuccess).toHaveBeenCalledWith('Account deleted')
   })
 })
