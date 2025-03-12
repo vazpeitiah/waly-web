@@ -1,5 +1,6 @@
-import { vi, beforeAll, afterEach, afterAll } from 'vitest'
+import { vi, beforeAll, afterEach, afterAll, beforeEach } from 'vitest'
 import '@testing-library/jest-dom/vitest'
+import { cleanup } from '@testing-library/react'
 
 import { server } from './server'
 
@@ -18,12 +19,19 @@ Object.defineProperty(window, 'matchMedia', {
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,
+    i18n: {
+      exists: vi.fn(),
+    },
   }),
   initReactI18next: {
     type: '3rdParty',
     init: vi.fn(),
   },
 }))
+
+beforeEach(() => {
+  cleanup()
+})
 
 beforeAll(() => server.listen())
 

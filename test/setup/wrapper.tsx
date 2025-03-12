@@ -1,3 +1,4 @@
+import { ConfirmProvider } from '@/providers'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { PropsWithChildren } from 'react'
 import { BrowserRouter } from 'react-router'
@@ -18,7 +19,7 @@ export const TestWrapper = ({ children }: PropsWithChildren) => {
           })
         }
       >
-        {children}
+        <ConfirmProvider>{children}</ConfirmProvider>
       </QueryClientProvider>
     </BrowserRouter>
   )

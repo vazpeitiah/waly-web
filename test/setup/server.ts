@@ -10,6 +10,13 @@ export const handlers = [
       { status: 401 },
     )
   }),
+  http.get('/user/profile', () => {
+    return HttpResponse.json({
+      id: 'user-id',
+      email: 'user@example.com',
+      name: 'John Doe',
+    })
+  }),
 ]
 
 export const server = setupServer(...handlers)
