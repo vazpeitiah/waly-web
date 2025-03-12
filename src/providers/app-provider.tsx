@@ -1,4 +1,5 @@
 import {
+  MutationCache,
   QueryCache,
   QueryClient,
   QueryClientProvider,
@@ -11,6 +12,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ThemeProvider } from './theme-provider'
 import { DEFAULT_STALE_TIME, QK_ERROR_EXCLUDE } from '@/utils/const'
 import ConfirmProvider from './confirm-provider'
+import { AxiosError } from 'axios'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,6 +27,15 @@ const queryClient = new QueryClient({
       toast.error(`Failed to fetch ${query.queryKey[0]}: ${error.message}`, {
         richColors: true,
       })
+    },
+  }),
+  mutationCache: new MutationCache({
+    onError: (error) => {
+      if (error instanceof AxiosError && error.response?.data?.message) {
+        toast.error(error.response.data.message)
+        return
+      }
+      toast.error(error.message)
     },
   }),
 })
