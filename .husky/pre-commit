@@ -1,1 +1,1 @@
-pnpm typecheck && pnpm lint-staged && pnpm test
+pnpm typecheck && pnpm lint-staged && pnpm test:coverage --silent
