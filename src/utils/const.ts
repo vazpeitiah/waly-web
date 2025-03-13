@@ -12,6 +12,8 @@ export const ROUTES = {
   categories: {
     root: '/categories',
     subcategories: '/categories/subcategories',
+    add: '/categories/add',
+    edit: '/categories/edit',
   },
 } as const
 
@@ -30,6 +32,9 @@ export const QK = {
   },
   auth: {
     verify: 'auth-verify',
+  },
+  categories: {
+    read: 'categories',
   },
 }
 
