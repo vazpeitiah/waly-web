@@ -72,7 +72,8 @@
       "edit": "Editar cuenta"
     },
     "categories": {
-      "root": "Categorías"
+      "root": "Categorías",
+      "add": "Agregar categoría"
     },
     "transactions": {
       "root": "Transacciones"
@@ -80,6 +81,15 @@
   },
   "categories": {
     "title": "Categorías",
-    "add": "Agregar categoría"
+    "add": "Agregar categoría",
+    "form": {
+      "editTitle": "Editar categoría {{category.name}}",
+      "title": "Agregar categoría",
+      "name": "Nombre"
+    },
+    "create": {
+      "success": "Categoría creada exitosamente",
+      "error": "No se pudo crear la categoría correctamente"
+    }
   }
 }

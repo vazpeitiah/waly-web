@@ -9,6 +9,7 @@ import {
   Transactions,
   Login,
   AccountForm,
+  CategoryForm,
 } from '@/pages'
 import { ROUTES } from '@/utils/const'
 import { AppProvider } from '@/providers'
@@ -29,6 +30,7 @@ export default function App() {
             </Route>
             <Route path={ROUTES.categories.root}>
               <Route index element={<Categories />} />
+              <Route path={ROUTES.categories.add} element={<CategoryForm />} />
             </Route>
             <Route path={ROUTES.transactions.root}>
               <Route index element={<Transactions />} />
