@@ -8,6 +8,10 @@ import userEvent from '@testing-library/user-event'
 import { server } from './setup/server'
 import { http, HttpResponse } from 'msw'
 
+vi.mock('window.matchMedia', () => ({
+  matches: false, // set light theme by default
+}))
+
 describe('App', () => {
   it('should render login title', async () => {
     render(<App />)
@@ -61,6 +65,29 @@ describe('App', () => {
     await user.click(await screen.findByText('navUser.logout'))
 
     expect(setIsAuthSpy).toHaveBeenCalledWith(false)
+  })
+
+  it('should switch theme correctly', async () => {
+    const originalUseAuthStore = AuthStore.useAuthStore
+    vi.spyOn(AuthStore, 'useAuthStore').mockImplementation(() => ({
+      ...originalUseAuthStore(),
+      isAuth: true,
+    }))
+
+    render(<App />)
+
+    await screen.findByText('app.title')
+    await userEvent.click(await screen.findByText('Toggle theme'))
+    await userEvent.click(await screen.findByText('theme.dark'))
+
+    const root = window.document.documentElement
+
+    expect(root.classList.contains('dark')).toBeTruthy()
+
+    await userEvent.click(await screen.findByText('Toggle theme'))
+    await userEvent.click(await screen.findByText('theme.light'))
+
+    expect(root.classList.contains('light')).toBeTruthy()
   })
 
   it('should render not found page correctly', async () => {

@@ -8,8 +8,10 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
 import { useTheme } from '@/providers'
+import { useTranslation } from 'react-i18next'
 
 const ThemeSelector = () => {
+  const { t } = useTranslation()
   const { setTheme } = useTheme()
 
   return (
@@ -23,13 +25,13 @@ const ThemeSelector = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme('light')}>
-          Light
+          {t('theme.light')}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('dark')}>
-          Dark
+          {t('theme.dark')}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('system')}>
-          System
+          {t('theme.system')}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -91,5 +91,10 @@
       "success": "Categoría creada exitosamente",
       "error": "No se pudo crear la categoría correctamente"
     }
+  },
+  "theme": {
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema"
   }
 }
