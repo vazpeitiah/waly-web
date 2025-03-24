@@ -15,9 +15,6 @@ const useCreateCategory = () => {
       })
       toast.success(t('categories.create.success'))
     },
-    onError: () => {
-      toast.error(t('categories.create.error'))
-    },
   })
 
   return {

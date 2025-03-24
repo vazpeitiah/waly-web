@@ -11,9 +11,6 @@ const useCreateAccount = () => {
       queryClient.invalidateQueries({ queryKey: [QK.accounts.read] })
       toast.success('Account created successfully')
     },
-    onError: (error) => {
-      toast.error(error.message)
-    },
   })
 
   return { data, isPending, isSuccess, mutate }

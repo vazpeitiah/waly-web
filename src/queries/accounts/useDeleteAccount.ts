@@ -11,9 +11,6 @@ const useDeleteAccount = () => {
       queryClient.invalidateQueries({ queryKey: [QK.accounts.read] })
       toast.success('Account deleted')
     },
-    onError: (error) => {
-      toast.error(error.message)
-    },
   })
 
   return {

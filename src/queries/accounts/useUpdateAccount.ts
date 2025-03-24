@@ -11,9 +11,6 @@ const useUpdateAccount = () => {
       toast.success('Account updated successfully')
       queryClient.invalidateQueries({ queryKey: [QK.accounts.read] })
     },
-    onError: (error) => {
-      toast.error(error.message)
-    },
   })
 
   return { mutate, isPending, isSuccess }
