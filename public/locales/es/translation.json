@@ -90,6 +90,9 @@
     "create": {
       "success": "Categoría creada exitosamente",
       "error": "No se pudo crear la categoría correctamente"
+    },
+    "update": {
+      "success": "Categoría actualizada correctamente"
     }
   },
   "theme": {

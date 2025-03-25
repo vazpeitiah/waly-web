@@ -18,7 +18,7 @@ import {
   createCategorySchema,
   defaultCategory,
 } from '@/models/category'
-import { useCreateCategory } from '@/queries/categories'
+import { useCreateCategory, useUpdateCategory } from '@/queries/categories'
 
 const CategoryForm = ({
   className,
@@ -33,11 +33,17 @@ const CategoryForm = ({
     defaultValues: category ?? defaultCategory,
   })
   const { createCategory, isPending: isCreating } = useCreateCategory()
-  const isPending = isCreating
+  const { mutate: updateCategory, isPending: isUpdating } = useUpdateCategory()
+  const isPending = isCreating || isUpdating
 
   const handleOnSubmit = form.handleSubmit((data) => {
     if (!category) {
       createCategory(data)
+    } else {
+      updateCategory({
+        id: category.id,
+        data,
+      })
     }
     handleCancel()
   })

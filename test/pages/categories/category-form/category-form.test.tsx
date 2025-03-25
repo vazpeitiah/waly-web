@@ -7,14 +7,14 @@ import { CategoryForm } from '@/pages'
 import { TestWrapper } from '../../../setup/wrapper'
 import { server } from '../../../setup/server'
 import { ROUTES } from '@/utils/const'
-import { Account } from '@/models/account'
+import { Category } from '@/models/category'
 
 const mockNavigate = vi.fn()
 
 const mocks = vi.hoisted(() => {
   return {
     mockSuccess: vi.fn(),
-    mockState: null as { account: Account } | null,
+    mockState: null as { category: Category } | null,
   }
 })
 
@@ -86,25 +86,23 @@ describe('AccountForm', () => {
     expect(mocks.mockSuccess).toHaveBeenCalledWith('categories.create.success')
   })
 
-  it.skip('should update an account correctly', async () => {
+  it('should update an account correctly', async () => {
     const requestSpy = vi.fn()
     mocks.mockState = {
-      account: {
+      category: {
         id: 'cm7o6w9xm00014aa22bfoombt',
-        name: 'Account',
-        type: 'cash',
+        name: 'Groceries',
       },
     }
 
     const user = userEvent.setup()
     server.use(
-      http.put('/accounts/cm7o6w9xm00014aa22bfoombt', async ({ request }) => {
+      http.put('/categories/cm7o6w9xm00014aa22bfoombt', async ({ request }) => {
         const body = await request.json()
         requestSpy(body)
         return HttpResponse.json({
           id: 'cm7o6w9xm00014aa22bfoombt',
-          name: 'Updated Account',
-          type: 'credit_card',
+          name: 'Food & Groceries',
         })
       }),
     )
@@ -115,26 +113,17 @@ describe('AccountForm', () => {
       </TestWrapper>,
     )
 
-    await user.clear(screen.getByLabelText('accounts.form.name'))
+    await user.clear(screen.getByLabelText('categories.form.name'))
     await user.type(
-      screen.getByLabelText('accounts.form.name'),
-      'Updated Account',
+      screen.getByLabelText('categories.form.name'),
+      'Food & Groceries',
     )
-    await user.click(screen.getByLabelText('accounts.form.type'))
-    const options = await screen.findAllByText(
-      'catalogs.accountTypes.credit_card',
-    )
-    /* the options[0] is hidden */
-    await user.click(options[1])
     await user.click(screen.getByText('buttons.save'))
 
     expect(requestSpy).toHaveBeenCalledWith({
-      name: 'Updated Account',
-      type: 'credit_card',
+      name: 'Food & Groceries',
     })
-    expect(mocks.mockSuccess).toHaveBeenCalledWith(
-      'Account updated successfully',
-    )
-    expect(mockNavigate).toHaveBeenCalledWith(ROUTES.accounts.root)
+    expect(mocks.mockSuccess).toHaveBeenCalledWith('categories.update.success')
+    expect(mockNavigate).toHaveBeenCalledWith(ROUTES.categories.root)
   })
 })

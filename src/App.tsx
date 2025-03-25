@@ -31,6 +31,7 @@ export default function App() {
             <Route path={ROUTES.categories.root}>
               <Route index element={<Categories />} />
               <Route path={ROUTES.categories.add} element={<CategoryForm />} />
+              <Route path={ROUTES.categories.edit} element={<CategoryForm />} />
             </Route>
             <Route path={ROUTES.transactions.root}>
               <Route index element={<Transactions />} />
