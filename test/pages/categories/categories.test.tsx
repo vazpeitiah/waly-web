@@ -105,7 +105,7 @@ describe('Categories Page', () => {
     })
 
     await user.click(actionsButtons[0])
-    await user.click(screen.getByText('accounts.table.actions.edit'))
+    await user.click(screen.getByText('categories.table.actions.edit'))
 
     expect(mockNavigate).toHaveBeenCalledWith(ROUTES.categories.edit, {
       state: { category: categories[0] },

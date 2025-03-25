@@ -93,6 +93,13 @@
     },
     "update": {
       "success": "Categoría actualizada correctamente"
+    },
+    "table": {
+      "actions": {
+        "title": "Acciones",
+        "edit": "Editar categoría",
+        "delete": "Eliminar categoría"
+      }
     }
   },
   "theme": {

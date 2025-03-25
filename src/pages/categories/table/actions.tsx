@@ -52,14 +52,14 @@ const Actions = ({ row }: ActionsProps) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>
-          {t('accounts.table.actions.title')}
+          {t('categories.table.actions.title')}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleEdit}>
-          {t('accounts.table.actions.edit')}
+          {t('categories.table.actions.edit')}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={handleDelete}>
-          {t('accounts.table.actions.delete')}
+          {t('categories.table.actions.delete')}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
