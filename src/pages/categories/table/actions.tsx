@@ -9,12 +9,12 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { useConfirm } from '@/hooks'
 import { Category } from '@/models/category'
-import { useDeleteAccount } from '@/queries/accounts'
 import { ROUTES } from '@/utils/const'
 import { Row } from '@tanstack/react-table'
 import { MoreHorizontal } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
+import { useDeleteCategory } from '@/queries/categories'
 
 interface ActionsProps {
   row: Row<Category>
@@ -23,18 +23,18 @@ interface ActionsProps {
 const Actions = ({ row }: ActionsProps) => {
   const { t } = useTranslation()
   const { confirm } = useConfirm()
-  const { mutate } = useDeleteAccount()
+  const { mutate: deleteCategory } = useDeleteCategory()
   const navigate = useNavigate()
   const category = row.original
 
   const handleDelete = async () => {
     const isConfirmed = await confirm({
-      title: t('accounts.table.actions.confirmDelete', {
-        account: category.name,
+      title: t('categories.table.actions.confirmDelete', {
+        category,
       }),
     })
     if (isConfirmed) {
-      mutate(category.id)
+      deleteCategory(category.id)
     }
   }
 

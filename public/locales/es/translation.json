@@ -98,8 +98,12 @@
       "actions": {
         "title": "Acciones",
         "edit": "Editar categoría",
-        "delete": "Eliminar categoría"
+        "delete": "Eliminar categoría",
+        "confirmDelete": "¿Estás seguro de que quieres eliminar la categoría {{category.name}}?"
       }
+    },
+    "delete": {
+      "success": "Categoría eliminada correctamente"
     }
   },
   "theme": {

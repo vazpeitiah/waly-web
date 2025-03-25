@@ -18,3 +18,8 @@ export const updateCategory = async (
   const res = await api.put(`/categories/${id}`, data)
   return categorySchema.parse(res.data)
 }
+
+export const deleteCategory = async (id: Category['id']) => {
+  const res = await api.delete(`/categories/${id}`)
+  return categorySchema.parse(res.data)
+}

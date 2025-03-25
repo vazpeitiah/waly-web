@@ -64,7 +64,7 @@ describe('Categories Page', () => {
     )
   })
 
-  it('should be list the accounts correctly', async () => {
+  it('should be list the categories correctly', async () => {
     render(
       <TestWrapper>
         <Categories />
@@ -75,7 +75,7 @@ describe('Categories Page', () => {
     expect(await screen.findByText('Restaurant')).toBeInTheDocument()
   })
 
-  it('should be able to create a new account', async () => {
+  it('should be able to create a new category', async () => {
     const user = userEvent.setup()
 
     render(
@@ -90,7 +90,7 @@ describe('Categories Page', () => {
     expect(mockNavigate).toHaveBeenCalledWith(ROUTES.categories.add)
   })
 
-  it('should be able to edit an account', async () => {
+  it('should be able to edit an category', async () => {
     const user = userEvent.setup()
 
     render(
@@ -112,11 +112,11 @@ describe('Categories Page', () => {
     })
   })
 
-  it.skip('should be delete an account correctly', async () => {
+  it('should be delete an category correctly', async () => {
     const user = userEvent.setup()
 
     server.use(
-      http.delete('/accounts/:id', () => {
+      http.delete('/categories/:id', () => {
         return HttpResponse.json(categories[0])
       }),
     )
@@ -126,16 +126,16 @@ describe('Categories Page', () => {
       </TestWrapper>,
     )
 
-    await screen.findByText('Cash')
+    await screen.findByText('Supermarket')
     const actionsButtons = await screen.findAllByRole('button', {
       name: 'accounts.table.actions.open',
     })
 
     await user.click(actionsButtons[0])
-    await user.click(screen.getByText('accounts.table.actions.delete'))
+    await user.click(screen.getByText('categories.table.actions.delete'))
 
     await user.click(screen.getByText('buttons.confirm'))
 
-    expect(mocks.mockSuccess).toHaveBeenCalledWith('Account deleted')
+    expect(mocks.mockSuccess).toHaveBeenCalledWith('categories.delete.success')
   })
 })

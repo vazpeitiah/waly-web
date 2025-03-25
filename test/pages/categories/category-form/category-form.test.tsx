@@ -48,12 +48,12 @@ vi.mock('@/stores/auth', async () => {
   }
 })
 
-describe('AccountForm', () => {
+describe('CategoryForm', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
 
-  it('should create an account correctly', async () => {
+  it('should create an category correctly', async () => {
     const requestSpy = vi.fn()
     const user = userEvent.setup()
     server.use(
@@ -86,7 +86,7 @@ describe('AccountForm', () => {
     expect(mocks.mockSuccess).toHaveBeenCalledWith('categories.create.success')
   })
 
-  it('should update an account correctly', async () => {
+  it('should update an category correctly', async () => {
     const requestSpy = vi.fn()
     mocks.mockState = {
       category: {
