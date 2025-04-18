@@ -18,6 +18,7 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: [resolve(__dirname, './test/setup/setup.ts')],
+    globals: true,
     coverage: {
       provider: 'v8',
       exclude: [
