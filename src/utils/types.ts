@@ -18,3 +18,5 @@ export type BreadcrumbItem = {
   title: string
   url: string
 }
+
+export type DateRange = [Date | null, Date | null]
